@@ -116,6 +116,8 @@ spatiotemporalRecord.en = {
 
 const maliciousReturnRecord = entryRecords.find((entry) => entry.id === "malicious-return");
 authorTexts["malicious-return"].en.noteStart = "Roberto:";
+authorTexts["malicious-return"].zh.dedication = "谨以此篇致敬欧·亨利《二十年后》";
+authorTexts["malicious-return"].en.dedication = "Dedicated to O. Henry's “After Twenty Years.”";
 maliciousReturnRecord.en = {
   title: "Malicious Homecoming",
   aliases: ["Malicious homecoming"],

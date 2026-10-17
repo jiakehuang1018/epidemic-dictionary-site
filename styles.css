@@ -92,6 +92,7 @@ html[lang="en"] .entry-head h1 { font-family:var(--en-serif); font-size:clamp(2.
 .essay-divider { display:flex; align-items:center; gap:.7rem; max-width:620px; margin:3.2rem 0 1.55rem; color:var(--proof); font:10px var(--sans); letter-spacing:.12em; }
 .essay-divider::after { content:""; flex:1; height:1px; background:var(--rule); }
 .essay-body { max-width:620px; font-size:clamp(17px,1.5vw,19px); line-height:2.02; }
+.essay-body .essay-dedication { margin:0 0:2.5rem; color:var(--proof); text-align:center; font:italic 15px/1.65 "KaiTi", "STKaiti", var(--zh-serif); letter-spacing:.08em; text-indent:0; }
 .essay-title { margin:0 0:2.1rem; text-align:center; font-size:clamp(1.65rem,3vw,2.25rem); font-weight:600; letter-spacing:.08em; line-height:1.35; }
 .essay-section { margin:2.2rem 0 .9rem; color:var(--proof); font:600 clamp(14px,1.15vw,16px)/1.55 var(--sans); letter-spacing:.07em; }
 .essay-title + .essay-section { margin-top:0; }
@@ -103,6 +104,7 @@ html[lang="en"] .sense,html[lang="en"] .essay-body { max-width:64ch; }
 html[lang="en"] .sense { font-size:18px; line-height:1.72; }
 html[lang="en"] .essay-body { font-family:var(--en-serif); font-size:18px; line-height:1.78; }
 html[lang="en"] .essay-title { font-family:var(--en-serif); font-weight:400; letter-spacing:-.02em; }
+html[lang="en"] .essay-dedication { font-family:var(--en-serif); font-size:15px; letter-spacing:.01em; }
 html[lang="en"] .essay-section { font-family:var(--sans); }
 html[lang="en"] .essay-body p { text-indent:0; margin-bottom:1.35rem; }
 html[lang="en"] .essay-body--refrain { max-width:34rem; }
