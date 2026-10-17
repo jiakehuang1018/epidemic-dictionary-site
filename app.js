@@ -4,7 +4,7 @@ const footer = document.querySelector("#site-footer");
 const edgeIndex = document.querySelector("#edge-index");
 
 const zhInitials = {
-  "dynamic-zero":"D", "spatiotemporal-contact":"S", "static-management":"J", "three-zones":"S", "closed-loop":"B", "fangcang":"F", "nucleic-acid":"H", "travel-card":"X", "venue-code":"C", "health-code":"J", "covid":"X", "antigen":"K", "asymptomatic":"W", "close-contact":"M", "aerosol":"Q", "long-covid":"C", "vaccination":"Y", "chosen-worker":"T", "malicious-return":"E", "runology":"R", "cement-nose":"S", "lie-flat":"T", "phantom-positive":"H", "yellow-code-hospital":"H", "fight-epidemic":"Z", "retrograde":"N", "big-white":"D", "nonessential":"F", "zero-circuit":"R", "positive-sheep":"Y", "yang-heroes":"Y"
+  "dynamic-zero":"D", "spatiotemporal-contact":"S", "static-management":"J", "three-zones":"S", "closed-loop":"B", "fangcang":"F", "nucleic-acid":"H", "travel-card":"X", "venue-code":"C", "health-code":"J", "covid":"X", "antigen":"K", "asymptomatic":"W", "close-contact":"M", "aerosol":"Q", "long-covid":"C", "vaccination":"Y", "chosen-worker":"T", "malicious-return":"E", "runology":"R", "cement-nose":"S", "lie-flat":"T", "phantom-positive":"H", "yellow-code-hospital":"H", "fight-epidemic":"Z", "retrograde":"N", "big-white":"D", "nonessential":"F", "unless-necessary":"F", "zero-circuit":"R", "positive-sheep":"Y", "yang-heroes":"Y"
 };
 
 const editorialMarks = {
@@ -12,6 +12,7 @@ const editorialMarks = {
   "spatiotemporal-contact": { zh:"初稿　释义暂定", en:"First draft · provisional sense" },
   "malicious-return": { zh:"文学释义　致敬欧·亨利《二十年后》", en:"" },
   "fangcang": { zh:"文学释义　使用说明书", en:"Literary entry · user manual" },
+  "unless-necessary": { zh:"文学释义　反复句", en:"Literary entry · refrain" },
   "static-management": { zh:"旧义已停用", en:"This sense later fell out of use" },
   "positive-sheep": { zh:"增补　网络语料", en:"Supplement · network usage" },
 };
@@ -197,11 +198,11 @@ function linkedEssayParagraph(text, language, currentId) {
   });
 }
 
-function essayParagraphMarkup(paragraph, language, currentId) {
+function essayParagraphMarkup(paragraph, language, currentId, index = 0, layout = "") {
   const content = linkedEssayParagraph(paragraph, language, currentId);
   return /^(?:\d+\.\s|\d+(?:\.\d+)+\s)/.test(paragraph)
     ? `<h3 class="essay-section">${content}</h3>`
-    : `<p>${content}</p>`;
+    : `<p class="${layout === "refrain" ? `essay-refrain-line${index > 0 && index % 4 === 0 ? " essay-refrain-stanza" : ""}` : ""}">${content}</p>`;
 }
 
 function renderEntry(language, id) {
@@ -213,7 +214,7 @@ function renderEntry(language, id) {
   const related = record.relatedEntries.map(getRecord).filter((item) => getLocale(item, language));
   const mark = editorialMarks[record.id]?.[language];
   const essay = locale.essay;
-  main.innerHTML = `<section class="page entry-page"><div class="running-header"><span>${escapeHtml(copy.projectTitle)}</span><span>${escapeHtml(entryRange(record, language))}</span></div><article class="entry-sheet"><header class="entry-head"><p class="entry-number">${mark ? escapeHtml(mark) : language === "zh" ? "词条校订中" : "entry under revision"}</p><h1>${escapeHtml(locale.title)}</h1><p class="lexical-line">${locale.pinyin ? `<i>${escapeHtml(locale.pinyin)}</i>` : ""}<span>${escapeHtml(locale.partOfSpeech || "")}</span></p></header><section class="definition-flow"><div class="dictionary-sense"><p class="sense"><sup>①</sup>${escapeHtml(locale.definitions?.[0] || "")}</p>${locale.background ? `<p class="editorial-gloss">${escapeHtml(locale.background)}</p>` : ""}</div>${essay ? `<div class="essay-divider" aria-hidden="true"><span>${language === "zh" ? "长释义" : "Extended reading"}</span></div><div class="essay-body">${essay.title ? `<h2 class="essay-title">${escapeHtml(essay.title)}</h2>` : ""}${essay.paragraphs.map((paragraph) => essayParagraphMarkup(paragraph, language, record.id)).join("")}</div>${essay.translationNote ? `<p class="translation-note">${escapeHtml(essay.translationNote)}</p>` : ""}` : `<p class="editorial-gloss">${copy.unavailableBody}</p>`}</section>${related.length ? `<footer class="related"><span>${copy.seeAlso}</span>${related.map((item) => termLink(item, language)).join("<b>／</b>")}</footer>` : ""}</article></section>`;
+  main.innerHTML = `<section class="page entry-page"><div class="running-header"><span>${escapeHtml(copy.projectTitle)}</span><span>${escapeHtml(entryRange(record, language))}</span></div><article class="entry-sheet"><header class="entry-head"><p class="entry-number">${mark ? escapeHtml(mark) : language === "zh" ? "词条校订中" : "entry under revision"}</p><h1>${escapeHtml(locale.title)}</h1><p class="lexical-line">${locale.pinyin ? `<i>${escapeHtml(locale.pinyin)}</i>` : ""}<span>${escapeHtml(locale.partOfSpeech || "")}</span></p></header><section class="definition-flow"><div class="dictionary-sense"><p class="sense"><sup>①</sup>${escapeHtml(locale.definitions?.[0] || "")}</p>${locale.background ? `<p class="editorial-gloss">${escapeHtml(locale.background)}</p>` : ""}</div>${essay ? `<div class="essay-divider" aria-hidden="true"><span>${language === "zh" ? "长释义" : "Extended reading"}</span></div><div class="essay-body${essay.layout ? ` essay-body--${escapeHtml(essay.layout)}` : ""}">${essay.title ? `<h2 class="essay-title">${escapeHtml(essay.title)}</h2>` : ""}${essay.paragraphs.map((paragraph, index) => essayParagraphMarkup(paragraph, language, record.id, index, essay.layout)).join("")}</div>${essay.translationNote ? `<p class="translation-note">${escapeHtml(essay.translationNote)}</p>` : ""}` : `<p class="editorial-gloss">${copy.unavailableBody}</p>`}</section>${related.length ? `<footer class="related"><span>${copy.seeAlso}</span>${related.map((item) => termLink(item, language)).join("<b>／</b>")}</footer>` : ""}</article></section>`;
 }
 
 function renderAbout(language) {
