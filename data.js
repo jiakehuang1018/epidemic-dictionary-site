@@ -115,6 +115,7 @@ spatiotemporalRecord.en = {
 };
 
 const maliciousReturnRecord = entryRecords.find((entry) => entry.id === "malicious-return");
+authorTexts["malicious-return"].en.noteStart = "Roberto:";
 maliciousReturnRecord.en = {
   title: "Malicious Homecoming",
   aliases: ["Malicious homecoming"],

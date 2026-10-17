@@ -205,6 +205,15 @@ function essayParagraphMarkup(paragraph, language, currentId, index = 0, layout 
     : `<p class="${layout === "refrain" ? `essay-refrain-line${index > 0 && index % 4 === 0 ? " essay-refrain-stanza" : ""}` : ""}">${content}</p>`;
 }
 
+function essayMarkup(essay, language, currentId) {
+  const noteIndex = essay.noteStart ? essay.paragraphs.findIndex((paragraph) => paragraph.startsWith(essay.noteStart)) : -1;
+  const prose = noteIndex === -1 ? essay.paragraphs : essay.paragraphs.slice(0, noteIndex);
+  const note = noteIndex === -1 ? [] : essay.paragraphs.slice(noteIndex);
+  const proseMarkup = prose.map((paragraph, index) => essayParagraphMarkup(paragraph, language, currentId, index, essay.layout)).join("");
+  const noteMarkup = note.length ? `<aside class="essay-note" aria-label="Author's note">${note.map((paragraph, index) => essayParagraphMarkup(paragraph, language, currentId, index, "")).join("")}</aside>` : "";
+  return `${proseMarkup}${noteMarkup}`;
+}
+
 function renderEntry(language, id) {
   const copy = ui[language];
   const record = getRecord(id);
@@ -214,7 +223,7 @@ function renderEntry(language, id) {
   const related = record.relatedEntries.map(getRecord).filter((item) => getLocale(item, language));
   const mark = editorialMarks[record.id]?.[language];
   const essay = locale.essay;
-  main.innerHTML = `<section class="page entry-page"><div class="running-header"><span>${escapeHtml(copy.projectTitle)}</span><span>${escapeHtml(entryRange(record, language))}</span></div><article class="entry-sheet"><header class="entry-head"><p class="entry-number">${mark ? escapeHtml(mark) : language === "zh" ? "词条校订中" : "entry under revision"}</p><h1>${escapeHtml(locale.title)}</h1><p class="lexical-line">${locale.pinyin ? `<i>${escapeHtml(locale.pinyin)}</i>` : ""}<span>${escapeHtml(locale.partOfSpeech || "")}</span></p></header><section class="definition-flow"><div class="dictionary-sense"><p class="sense"><sup>①</sup>${escapeHtml(locale.definitions?.[0] || "")}</p>${locale.background ? `<p class="editorial-gloss">${escapeHtml(locale.background)}</p>` : ""}</div>${essay ? `<div class="essay-divider" aria-hidden="true"><span>${language === "zh" ? "长释义" : "Extended reading"}</span></div><div class="essay-body${essay.layout ? ` essay-body--${escapeHtml(essay.layout)}` : ""}">${essay.title ? `<h2 class="essay-title">${escapeHtml(essay.title)}</h2>` : ""}${essay.paragraphs.map((paragraph, index) => essayParagraphMarkup(paragraph, language, record.id, index, essay.layout)).join("")}</div>${essay.translationNote ? `<p class="translation-note">${escapeHtml(essay.translationNote)}</p>` : ""}` : `<p class="editorial-gloss">${copy.unavailableBody}</p>`}</section>${related.length ? `<footer class="related"><span>${copy.seeAlso}</span>${related.map((item) => termLink(item, language)).join("<b>／</b>")}</footer>` : ""}</article></section>`;
+  main.innerHTML = `<section class="page entry-page"><div class="running-header"><span>${escapeHtml(copy.projectTitle)}</span><span>${escapeHtml(entryRange(record, language))}</span></div><article class="entry-sheet"><header class="entry-head"><p class="entry-number">${mark ? escapeHtml(mark) : language === "zh" ? "词条校订中" : "entry under revision"}</p><h1>${escapeHtml(locale.title)}</h1><p class="lexical-line">${locale.pinyin ? `<i>${escapeHtml(locale.pinyin)}</i>` : ""}<span>${escapeHtml(locale.partOfSpeech || "")}</span></p></header><section class="definition-flow"><div class="dictionary-sense"><p class="sense"><sup>①</sup>${escapeHtml(locale.definitions?.[0] || "")}</p>${locale.background ? `<p class="editorial-gloss">${escapeHtml(locale.background)}</p>` : ""}</div>${essay ? `<div class="essay-divider" aria-hidden="true"><span>${language === "zh" ? "长释义" : "Extended reading"}</span></div><div class="essay-body${essay.layout ? ` essay-body--${escapeHtml(essay.layout)}` : ""}">${essay.title ? `<h2 class="essay-title">${escapeHtml(essay.title)}</h2>` : ""}${essayMarkup(essay, language, record.id)}</div>${essay.translationNote ? `<p class="translation-note">${escapeHtml(essay.translationNote)}</p>` : ""}` : `<p class="editorial-gloss">${copy.unavailableBody}</p>`}</section>${related.length ? `<footer class="related"><span>${copy.seeAlso}</span>${related.map((item) => termLink(item, language)).join("<b>／</b>")}</footer>` : ""}</article></section>`;
 }
 
 function renderAbout(language) {
