@@ -116,7 +116,7 @@ spatiotemporalRecord.en = {
 
 const maliciousReturnRecord = entryRecords.find((entry) => entry.id === "malicious-return");
 maliciousReturnRecord.en = {
-  title: "Malicious Return Home",
+  title: "Malicious Homecoming",
   aliases: ["Malicious homecoming"],
   pinyin: "",
   partOfSpeech: "contested phrase",
@@ -149,6 +149,53 @@ unlessNecessaryRecord.en = {
   socialContext: "Risk communication; restriction; irony; ordinary life.",
   essay: authorTexts["unless-necessary"].en,
 };
+
+/* English short definitions for entries without author-supplied extended readings. */
+const englishShortEntries = {
+  "dynamic-zero": { title:"Dynamic Zero-COVID", aliases:["Dynamic clearing"], definition:"A containment approach that aimed to detect and suppress local outbreaks rapidly, bringing community transmission back to zero rather than claiming absolute zero infection.", background:"A pandemic-control formulation shaped in 2021 amid highly transmissible variants." },
+  "static-management": { title:"Static Management", aliases:["Silent management"], definition:"A measure suspending most movement and commercial activity in a defined area, except for epidemic control and essential supply, in order to interrupt transmission through physical stillness.", background:"Used by some cities in 2022 during outbreaks of the Omicron variant." },
+  "three-zones": { title:"Three-Zone Classification", aliases:["Locked-down / controlled / precautionary zones"], definition:"A risk-based division of urban space into locked-down, controlled, and precautionary zones, each subject to a different degree of activity restriction.", background:"A differentiated control strategy widely used during outbreaks." },
+  "closed-loop": { title:"Closed-Loop Management", aliases:[], definition:"A management arrangement that confines a designated group to fixed spaces and work routes in order to limit unprotected contact with the outside world.", background:"Used in centralized quarantine, international-flight support, and major events." },
+  "travel-card": { title:"Travel Card", aliases:["Telecom Big Data Travel Card"], definition:"A digital credential showing cities recently visited and their risk status; it became a principal verification tool for intercity travel.", background:"Introduced in 2020 and discontinued in December 2022." },
+  "venue-code": { title:"Venue Code", aliases:[], definition:"A location-specific QR code scanned before entering a space, automatically logging visits, checking health status, and supporting contact tracing.", background:"Widely adopted in 2022 for key public venues." },
+  "health-code": { title:"Health Code", aliases:["Green / yellow / red code"], definition:"A colour-coded digital credential indicating an individual's assessed risk status and affecting access to public space and travel.", background:"It entered public life alongside digital epidemic control in early 2020." },
+  "covid": { title:"COVID-19", aliases:["Novel coronavirus pneumonia"], definition:"An acute respiratory infectious disease caused by SARS-CoV-2; the term also names the global pandemic crisis it produced.", background:"A standardized name that emerged in early 2020." },
+  "antigen": { title:"Antigen Test", aliases:["Rapid antigen test", "A test"], definition:"A rapid test for SARS-CoV-2 antigens that became a routine home-testing tool because it was convenient and returned results quickly.", background:"It became an important supplement to nucleic-acid testing during the Omicron wave." },
+  "asymptomatic": { title:"Asymptomatic Infection", aliases:["Asymptomatic case"], definition:"An infection that tests positive by nucleic-acid testing but presents no symptoms or signs perceptible to the person or identifiable clinically.", background:"A highly visible category in early pandemic screening." },
+  "close-contact": { title:"Close Contact", aliases:["Secondary close contact"], definition:"A person who had close-range, inadequately protected contact with a suspected or confirmed case; a secondary close contact is a close contact of that person.", background:"A risk identity refined through contact tracing and control protocols." },
+  "aerosol": { title:"Aerosol Transmission", aliases:[], definition:"A route of transmission in which tiny pathogen-bearing particles remain suspended in the air and can cause infection when inhaled by others.", background:"It entered public discussion as an explanation for superspreading in enclosed spaces." },
+  "long-covid": { title:"Long COVID", aliases:[], definition:"A clinical syndrome in which symptoms such as fatigue, brain fog, or palpitations persist or newly appear months after infection.", background:"Attention shifted from acute infection to long-term health effects late in the pandemic." },
+  "vaccination": { title:"Vaccination", aliases:["Booster shot"], definition:"The building of immune protection through COVID-19 vaccination; a booster is an additional dose after a primary course.", background:"A large-scale vaccination drive began nationwide in 2021." },
+  "chosen-worker": { title:"The Chosen Worker", aliases:["Chosen cook"], definition:"Someone whose health code remained normal and whose residence was not locked down, and who could—or had to—continue going to work.", background:"A self-mocking phrase formed amid outbreaks, quarantine, and changing health-code status." },
+  "runology": { title:"Runology", aliases:["Run"], definition:"Internet discourse that jokingly considers leaving high-pressure circumstances and seeking other possibilities for life.", background:"The term, a play on the English word “run,” surged during Shanghai's lockdown." },
+  "cement-nose": { title:"Cement Nose, Razor-Blade Throat", aliases:[], definition:"An exaggerated metaphor describing nasal blockage as cement and severe sore throat as razor blades.", background:"Used by many people to summarize characteristic symptoms during the Omicron wave." },
+  "lie-flat": { title:"Lying Flat", aliases:["Emotional breakdown"], definition:"“Emotional breakdown” denotes a psychological line of defence being shattered by reality; “lying flat” became a low-desire, passive-resistance response to unpredictability.", background:"An existing internet phrase that acquired new resonance amid lockdown fatigue." },
+  "phantom-positive": { title:"Phantom Positive Syndrome", aliases:[], definition:"Not a medical diagnosis, but an anxiety-driven state of repeatedly suspecting infection and scrutinizing minor bodily reactions because people nearby have become infected.", background:"A widespread expression among uninfected people as an infection wave arrived." },
+  "yellow-code-hospital": { title:"Yellow-Code Hospital", aliases:[], definition:"A designated hospital receiving people with yellow or red health codes who needed urgent care, revealing the coordination required of medical systems under strict controls.", background:"Established to meet urgent medical needs for people without a green code." },
+  "fight-epidemic": { title:"Fighting the Epidemic", aliases:["Anti-epidemic battle"], definition:"A military metaphor that frames epidemic control as a battle: the virus as enemy, medical workers as soldiers, and communities as positions to defend.", background:"A core mobilizing phrase widely used by official and mainstream media early in the outbreak." },
+  "retrograde": { title:"Retrograde", aliases:["Those who went against the current"], definition:"A tribute to medical workers, service members, and logistics staff who took risks to go to the epidemic-control frontline.", background:"A term formerly used in emergency rescue whose meaning became highly focused during the pandemic." },
+  "big-white": { title:"Big White", aliases:["White protective suit"], definition:"A name for medical workers, community staff, and volunteers in white protective coveralls, borrowing a warm image to soften the distance of epidemic-control scenes.", background:"Its meaning shifted during the pandemic through an allusion to the healthcare robot in Big Hero 6." },
+  "nonessential": { title:"Unless Necessary, Do Not…", aliases:["Unless necessary, do not leave the city"], definition:"A phrase originally meant to express advice and discretion, but often understood as an outright prohibition when the standard of “necessity” became unclear in local implementation.", background:"A common formula in epidemic-control advisories that later came to feel coercive." },
+  "zero-circuit": { title:"Circuit-Breaker Mechanism", aliases:[], definition:"A measure suspending an international flight route for a period when confirmed cases on a single inbound flight reached a specified number or proportion.", background:"A financial term introduced into international passenger-flight management in 2020." },
+  "positive-sheep": { title:"Positive / Sheep", aliases:["Catching sheep", "Flock", "Chosen shepherd"], definition:"A homophone that uses “sheep” to refer to people who tested positive, creating expressions around transfer and care while easing the weight of illness through animal metaphor.", background:"A rich set of puns formed during the 2022 infection surge." },
+  "yang-heroes": { title:"Yang Guo / Yang Kang / Wang Chongyang", aliases:["Tested positive", "Recovered"], definition:"A set of homophonic puns on wuxia character names: Yang Guo for infection, Yang Kang for recovery, and Wang Chongyang for reinfection, placing illness in a shared cultural narrative.", background:"Internet users repurposed martial-arts-fiction names during the 2022 wave." },
+};
+
+Object.entries(englishShortEntries).forEach(([id, entry]) => {
+  const record = entryRecords.find((item) => item.id === id);
+  if (record && !record.en) {
+    record.en = {
+      title: entry.title,
+      aliases: entry.aliases,
+      pinyin: "",
+      partOfSpeech: "entry",
+      definitions: [entry.definition],
+      background: entry.background,
+      socialContext: "Pandemic-era language and public life.",
+      essay: null,
+    };
+  }
+});
 
 const ui = {
   zh: {

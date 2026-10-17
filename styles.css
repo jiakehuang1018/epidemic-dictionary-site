@@ -96,7 +96,7 @@ html[lang="en"] .entry-head h1 { font-family:var(--en-serif); font-size:clamp(2.
 .essay-section { margin:2.2rem 0 .9rem; color:var(--proof); font:600 clamp(14px,1.15vw,16px)/1.55 var(--sans); letter-spacing:.07em; }
 .essay-title + .essay-section { margin-top:0; }
 .essay-body p { margin:0 0:1.75rem; text-indent:2em; }
-.essay-body--refrain { max-width:32rem; }
+.essay-body--refrain { max-width:32rem; margin-inline:auto; text-align:center; }
 .essay-body--refrain .essay-refrain-line { margin:0; text-indent:0; line-height:1.72; }
 .essay-body--refrain .essay-refrain-stanza { margin-top:1.55rem; }
 html[lang="en"] .sense,html[lang="en"] .essay-body { max-width:64ch; }
